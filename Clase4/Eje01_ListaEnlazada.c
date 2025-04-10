@@ -61,7 +61,7 @@ Tnodo * QuitarNodo(Tnodo **Start, int dato) {
         aux = &(*aux)->siguiente;
     }
 
-    // Si encontramos el nodo con el dato especificado, lo eliminamos.
+    // Si encontramos el nodo con el dato especificado, lo quitamos de la lista y retornamos al programa para su posterior eliminación.
     if (*aux) {
         Tnodo *temp = *aux;  // Guardamos el nodo a eliminar en una variable temporal.
         *aux = (*aux)->siguiente;  // Desvinculamos el nodo de la lista.
