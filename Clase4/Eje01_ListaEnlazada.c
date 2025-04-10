@@ -8,7 +8,7 @@ const int DIM = 15;
 typedef struct Tnodo
 {
    int dato;
-   Tnodo * siguiente;
+   struct Tnodo * siguiente;
 }Tnodo;
 
 Tnodo *CrearListaVacia();
@@ -16,7 +16,8 @@ Tnodo * CrearNodo(int dato);
 void InsertarNodo(Tnodo ** Start , Tnodo *Nodo);
 void InsertarNodoAlFinal(Tnodo ** Start,Tnodo *Nodo);
 Tnodo * BuscarNodo(Tnodo ** Start,int dato);
-void EliminarNodo(Tnodo ** Start,int dato);
+Tnodo * QuitarNodo(Tnodo ** Start,int dato);
+Tnodo * EliminarNodo(Tnodo * nodo);
 
 int main()
 {
@@ -32,9 +33,11 @@ int main()
   InsertarNodo(&Start, CrearNodo(20));
   InsertarNodo(&Start, CrearNodo(30));
 
-  Tnodo * buscado =BuscarNodo(&Start,20);
-  EliminarNodo(&Start, 50);
+  // Tnodo * buscado =BuscarNodo(&Start,20);
+  Tnodo * eliminar = QuitarNodo(&Start, 30);
+  free(eliminar);
   Tnodo * Aux = Start;
+  printf("\n");
   while (Aux)
   {
     printf("%d \n", Aux->dato);
@@ -45,7 +48,12 @@ int main()
   return 0;
 }
 
-void EliminarNodo(Tnodo **Start, int dato) {
+Tnodo * EliminarNodo(Tnodo * nodo)
+{
+  free(nodo);
+}
+
+Tnodo * QuitarNodo(Tnodo **Start, int dato) {
     Tnodo ** aux = Start;  // Usamos un puntero doble para apuntar al puntero actual.
     
     // Iteramos sobre la lista hasta encontrar el dato o alcanzar el final de la lista.
@@ -57,8 +65,10 @@ void EliminarNodo(Tnodo **Start, int dato) {
     if (*aux) {
         Tnodo *temp = *aux;  // Guardamos el nodo a eliminar en una variable temporal.
         *aux = (*aux)->siguiente;  // Desvinculamos el nodo de la lista.
-        free(temp);  // Liberamos la memoria ocupada por el nodo.
+        temp->siguiente =NULL; // Ponemos en NULL el puntero siguiente para asegura no llevar vinculos por fuera de la lista
+        return temp;
     }
+    return NULL;
 }
 
 Tnodo * BuscarNodo(Tnodo ** Start,int dato)
@@ -85,7 +95,7 @@ Tnodo * CrearNodo(int dato)
   return nodo;
 }
 
-void InsertarNodo(Tnodo ** Start , Tnodo *Nodo)
+void InsertarNodo(Tnodo ** Start, Tnodo *Nodo)
 {
     Nodo->siguiente = *Start;
     *Start  = Nodo ;
