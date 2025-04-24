@@ -17,6 +17,7 @@ void InsertarNodo(Tnodo ** Start , Tnodo *Nodo);
 void InsertarNodoAlFinal(Tnodo ** Start,Tnodo *Nodo);
 Tnodo * BuscarNodo(Tnodo ** Start,int dato);
 Tnodo * QuitarNodo(Tnodo ** Start,int dato);
+Tnodo * QuitarNodoConAnterior(Tnodo **Start, int dato);
 Tnodo * EliminarNodo(Tnodo * nodo);
 
 int main()
@@ -70,6 +71,33 @@ Tnodo * QuitarNodo(Tnodo **Start, int dato) {
     }
     return NULL;
 }
+
+// quitar nodo con seguimiento de de un nodo anterior
+Tnodo * QuitarNodoConAnterior(Tnodo **Start, int dato)
+{
+    Tnodo *nodoAux = (*Start);
+    Tnodo *nodoAnt = NULL;
+    while (nodoAux != NULL && nodoAux->dato != dato)
+    {
+        nodoAnt = nodoAux;
+        nodoAux = nodoAux->siguiente;
+    }
+
+    if (nodoAux != NULL)
+    {
+        if (nodoAux == (*Start))
+        {
+            (*Start) = nodoAux->siguiente;
+        }
+        else
+        {
+            nodoAnt->siguiente = nodoAux->siguiente;
+        }
+        nodoAux->siguiente = NULL;
+    }
+    return (nodoAux);
+}
+
 
 Tnodo * BuscarNodo(Tnodo ** Start,int dato)
 {
