@@ -4,7 +4,7 @@
 
 int main()
 {
-    char * buff[50];
+    char buff[50];
     scanf("%s", buff);
     int tamanioDeCadenaIngresadaPorUsuario = strlen(buff); // no considera el caracter nulo por lo tanto devuelve 10
    
