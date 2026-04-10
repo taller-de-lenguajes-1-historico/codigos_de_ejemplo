@@ -36,7 +36,7 @@ char * TiposDeArmaduras[] = {"Coraza de Metal", "Casco", "Hombreras de Plata", "
 //Funciones 
 Armadura * CrearArmadura(int Defensa, int bonus);
 Personaje * CrearPersonaje();
-void CargarArmadura(Personaje ** MiPersonaje, int defensa, int bounus );
+void CargarArmadura(Personaje ** MiPersonaje, int defensa, int bonus );
 
 int main()
 {   
@@ -48,6 +48,7 @@ int main()
     free(player->Defensa->Tipo);
     free(player->Defensa);
     free(player);
+
     getchar();  
     return 0;
 }
@@ -57,9 +58,9 @@ Personaje * CrearPersonaje()
     return (Personaje *) malloc(sizeof(Personaje));
 }
 
-void CargarArmadura(Personaje ** MiPersonaje, int defensa, int bounus )
+void CargarArmadura(Personaje ** MiPersonaje, int defensa, int bonus )
 { 
-    Armadura * nuevaArmadura  = CrearArmadura(defensa,bounus);
+    Armadura * nuevaArmadura  = CrearArmadura(defensa,bonus);
     (*MiPersonaje)->Defensa = nuevaArmadura;    
 }
 
