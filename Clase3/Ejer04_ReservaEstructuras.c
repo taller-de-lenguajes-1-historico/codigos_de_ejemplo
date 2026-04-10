@@ -32,7 +32,7 @@ char * TiposDePersonajes[] = {"Mago", "Hada", "Orco", "Guerrera", "Escudero","El
 char * TiposDeArmas[] = {"Espada", "Arco", "Hacha", "Cuchillo", "Espada Milenaria","Latigo"};
 char * TiposDeArmaduras[] = {"Coraza de Metal", "Casco", "Hombreras de Plata", "Botas de guerra", "Greba","Escudo"}; 
 
-    
+
 //Funciones 
 Armadura * CrearArmadura(int Defensa, int bonus);
 Personaje * CrearPersonaje();
@@ -44,7 +44,10 @@ int main()
     Personaje * player = CrearPersonaje();    
     CargarArmadura(&player,rand() % 5, rand() % 5);
 
-    printf("%s", player->Defensa->Tipo);    
+    printf("%s", player->Defensa->Tipo);  
+    free(player->Defensa->Tipo);
+    free(player->Defensa);
+    free(player);
     getchar();  
     return 0;
 }
